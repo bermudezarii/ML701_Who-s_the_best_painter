@@ -12,22 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .dain_predictor import DAINPredictor
-from .deepremaster_predictor import DeepRemasterPredictor
-from .deoldify_predictor import DeOldifyPredictor
-from .realsr_predictor import RealSRPredictor
-from .edvr_predictor import EDVRPredictor
-from .first_order_predictor import FirstOrderPredictor
-from .face_parse_predictor import FaceParsePredictor
-from .animegan_predictor import AnimeGANPredictor
-from .midas_predictor import MiDaSPredictor
-from .photo2cartoon_predictor import Photo2CartoonPredictor
-from .styleganv2_predictor import StyleGANv2Predictor
-from .styleganv2fitting_predictor import StyleGANv2FittingPredictor
-from .styleganv2mixing_predictor import StyleGANv2MixingPredictor
-from .styleganv2editing_predictor import StyleGANv2EditingPredictor
-from .pixel2style2pixel_predictor import Pixel2Style2PixelPredictor
-from .wav2lip_predictor import Wav2LipPredictor
-from .mpr_predictor import MPRPredictor
 from .lapstyle_predictor import LapStylePredictor
-from .photopen_predictor import PhotoPenPredictor

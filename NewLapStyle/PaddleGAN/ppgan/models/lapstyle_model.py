@@ -119,23 +119,19 @@ class LapStyleDraModel(BaseModel):
         self.backward_Dec()
         self.optimizers['optimG'].step()
 
+# Added test iter to calculate metrics and evaluate networks
     def test_iter(self, metrics=None):
+        # Evaluate networks
         self.nets['net_enc'].eval()
         self.nets['net_dec'].eval()
         self.forward()
+        # Update metric by adding batch of images to test
         with paddle.no_grad():
             if metrics is not None:
                 for metric in metrics.values():
                     metric.update(self.stylized, self.si)
         self.nets['net_enc'].train()
         self.nets['net_dec'].train()
-        # Pix2Pix -
-        # metric.update(self.fake_B / 255.0, self.real_B / 255.0)
-        # Pix2Pix 2
-        # metric.update(self.fake_B, self.real_B)
-
-        # StyleGAN https://github.com/PaddlePaddle/PaddleGAN/pull/347/files
-        # metric.update(fake_img, self.real_img)
 
 def tensor_resample(tensor, dst_size, mode='bilinear'):
     return F.interpolate(tensor, dst_size, mode=mode, align_corners=False)
@@ -315,11 +311,14 @@ class LapStyleRevFirstModel(BaseModel):
         self.backward_G()
         optimizers['optimG'].step()
 
+    # Added test iter to calculate metrics and evaluate networks
     def test_iter(self, metrics=None):
+        # Evaluate networks encoder and decoder + first revision network
         self.nets['net_enc'].eval()
         self.nets['net_dec'].eval()
         self.nets['net_rev'].eval()
         self.forward()
+        # Update metric by adding batch of images to test
         with paddle.no_grad():
             if metrics is not None:
                 for metric in metrics.values():
@@ -474,12 +473,20 @@ class LapStyleRevSecondModel(BaseModel):
         self.backward_G()
         optimizers['optimG'].step()
 
+        # Added test iter to calculate metrics and evaluate networks
     def test_iter(self, metrics=None):
+        self.nets['net_enc'].eval()
+        self.nets['net_dec'].eval()
+        self.nets['net_rev'].eval()
+        self.forward()
+    def test_iter(self, metrics=None):
+        # Evaluate networks encoder and decoder + first revision network and second revision networks
         self.nets['net_enc'].eval()
         self.nets['net_dec'].eval()
         self.nets['net_rev'].eval()
         self.nets['net_rev_2'].eval()
         self.forward()
+        # Update metric by adding batch of images to test
         with paddle.no_grad():
             if metrics is not None:
                 for metric in metrics.values():

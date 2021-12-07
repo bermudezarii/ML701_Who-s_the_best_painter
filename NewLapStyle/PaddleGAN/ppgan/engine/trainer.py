@@ -278,13 +278,17 @@ class Trainer:
                             visual_results=visual_results,
                             step=self.batch_id,
                             is_save_image=True)
-        fid_value = 0.0
+
+        # Added metrics, can append more metrics in the future by adding them in the config file
+        metric_value = 0.0
         if self.metrics:
             for metric_name, metric in self.metrics.items():
-                fid_value = metric.accumulate()
-                self.logger.info("Metric {}: {:.4f}".format(metric_name, fid_value))
-                print(metric_name)
-                wandb.log({metric_name: fid_value})
+                # Extract calculated value
+                metric_value = metric.accumulate()
+                # Add to logger
+                self.logger.info("Metric {}: {:.4f}".format(metric_name, metric_value))
+                # Log to wandb
+                wandb.log({metric_name: metric_value})
 
     def print_log(self):
         losses = self.model.get_current_losses()

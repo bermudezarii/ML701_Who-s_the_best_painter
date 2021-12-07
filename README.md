@@ -227,6 +227,59 @@ You can replace the content and style image:
 python applications/tools/lapstyle.py --content_img_path ${PATH_OF_CONTENT_IMG} --style_image_path ${PATH_OF_STYLE_IMG}
 ```
 
+## Dependencies 
+Below you can find a list of dependencies:
+* PaddlePaddle
+* PaddleGAN
+* tqdm
+* PyYAML>=5.1
+* scikit-image>=0.14.0
+* scipy>=1.1.0
+* opencv-python
+* imageio==2.9.0
+* imageio-ffmpeg
+* librosa
+* numba==0.53.1
+* easydict
+* munch
+* natsort
+* cudatoolkit
+
+
+## Important files 
+
+#### Lapstyle_model.py
+This is the model file of LapStyle, the loss functions are selected here, as well, the generators, how the forward pass and backpropagation is performed. This file was modified to be able to calculate the FID while the model is running. The functions test_iter were added to test the model for the selected metrics (currently only running FID) and to evaluate the networks. One new function per network. 
+
+Found in the following folder:  NewLapStyle/PaddleGAN/ppgan/models/lapstyle_model.py
+
+#### lapstyle_predictor.py
+Handles how the model loads the pretrained weights and saving the images in the output file. Last but not least, it handles all the laplacian pyramid functions. 
+
+Found in the following folder: NewLapStyle/PaddleGAN/ppgan/apps/lapstyle_predictor.py
+
+#### Trainer.py
+The most important file, where the following things happen:
+* Training loop is executed
+* Metrics are measured
+* Log is printed
+* WandB monitoring was added
+* FID calculation for LapStyle was added
+
+Found in the following folder: NewLapStyle/PaddleGAN/ppgan/engine/trainer.py
+
+#### Fid.py
+Using pretrained InceptionV3 weights trained on ImageNet, this file calculates de FID between the style image and the stylized image.
+File was modified to work with LapStyle, as it was originally done for cyclegan.
+
+Found in the following folder: NewLapStyle/PaddleGAN/ppgan/metrics/fid.py
+
+#### Config Files
+In these files the iterations, dataset location, batch size, optimizer  images and weights for content and style are selected.
+
+Found in the following folder: NewLapStyle/PaddleGAN/configs
+
+
 ## License
 Copyright (c) 2020 PaddlePaddle Authors. All Rights Reserved
 
