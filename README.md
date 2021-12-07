@@ -135,7 +135,7 @@ import paddle
 paddle.utils.run_check()
 ```
 
-A modified version of thePaddleGAN Framework is already included in the repo [PaddlePaddle Framework](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/en_US/install.md)
+A modified version of the [PaddleGAN](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/en_US/install.md) is already included in this repo 
 
 Just, ensure you are inside the "PaddleGAN" folder if not move 
 ```bash
@@ -153,8 +153,30 @@ If the previous commands did not work, run this one
 python setup.py develop
 ```
 
+The dataset is already included in the repo, go back to "NewLapStyle" folder and into the "dataset" folder.
+```bash
+cd ..
+```
+The original dataset can be found [here](https://www.kaggle.com/c/gan-getting-started/data). The dataset split is 70/30.
 
+Unzip both files and three folders should appear
+```bash
+unzip “*.zip”
+```
 
+Go back to PaddleGAN directory
+```bash
+cd ../PaddleGAN
+```
+
+To train the model from scratch run the following commands: (Skip this section to run a pretrained model)
+```bash
+python -u tools/main.py --config-file configs/lapstyle_draft.yaml
+python -u tools/main.py --config-file configs/lapstyle_rev_first.yaml --load 'output_dir/{{Previously Generated Folder by Draft}}/iter_30000_checkpoint.pdparams'
+!python -u tools/main.py --config-file configs/lapstyle_rev_second.yaml --load 'output_dir/{{Previously Generated Folder by First Rev}}/iter_30000_checkpoint.pdparams'
+```
+
+To change the style image go to the configs folder and change the name of the "style_root" property for train and test sections in the 3 config files. Each time the image is changed, the model needs to be retrained.
 
 
 
