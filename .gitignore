@@ -2,7 +2,9 @@
 .DS_Store
 .idea/
 NewLapStyle/.idea/
-NewLapStyle/.ipynb_checkpoints/LapStyle-checkpoint.ipynb
-NewLapStyle/.ipynb_checkpoints/LapStyle2-checkpoint.ipynb
-NewLapStyle/.ipynb_checkpoints/
-
+NewLapStyle/.ipynb_checkpoints
+NewLapStyle/PaddleGAN/wandb
+NewLapStyle/PaddleGAN/ppgan/solver/__pycache__
+NewLapStyle/PaddleGAN/ppgan/modules/__pycache__
+NewLapStyle/PaddleGAN/output_dir
+*.pyc
