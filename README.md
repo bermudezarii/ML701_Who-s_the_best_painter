@@ -130,7 +130,7 @@ python
 ```
 
 Inside the python instance run the following instructions
-```bash
+```python
 import paddle
 paddle.utils.run_check()
 ```
@@ -169,66 +169,65 @@ Go back to PaddleGAN directory
 cd ../PaddleGAN
 ```
 
-To train the model from scratch run the following commands: (Skip this section to run a pretrained model)
+To train the model from scratch run the following commands: (Skip this section to run a pretrained model) Replace {{Previously Generated Folder by Draft}}. 
+(1)Train the Draft Network of LapStyle under 128*128 resolution:
 ```bash
 python -u tools/main.py --config-file configs/lapstyle_draft.yaml
+```
+
+(2) Train the Revision Network of LapStyle under 256*256 resolution:
+```bash
 python -u tools/main.py --config-file configs/lapstyle_rev_first.yaml --load 'output_dir/{{Previously Generated Folder by Draft}}/iter_30000_checkpoint.pdparams'
-!python -u tools/main.py --config-file configs/lapstyle_rev_second.yaml --load 'output_dir/{{Previously Generated Folder by First Rev}}/iter_30000_checkpoint.pdparams'
 ```
 
-To change the style image go to the configs folder and change the name of the "style_root" property for train and test sections in the 3 config files. Each time the image is changed, the model needs to be retrained.
+(3) You can train the second Revision Network under 512*512 resolution:
+```bash
+python -u tools/main.py --config-file configs/lapstyle_rev_second.yaml --load 'output_dir/{{Previously Generated Folder by First Rev}}/iter_30000_checkpoint.pdparams'
+```
 
+To change the style image go to the configs folder and change the name of the "style_root" property for train and test sections in the 3 config files. 
 
-
-
-
-You can do the following step (below) and put the weights in results, or download the zip from: 
-
-[https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF ](https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF )
-
-and put it inside (pasting the zip and unzip there).
-
+To run pretrained model download the weights from: 
+[One Drive Link ](https://mbzuaiac-my.sharepoint.com/personal/roberto_guillen_mbzuai_ac_ae/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Froberto%5Fguillen%5Fmbzuai%5Fac%5Fae%2FDocuments%2FML701%2DWeights%2DLapStyle)
+and put it inside (paste the zip and unzip there). There should be 3 folders with 1 pdparams file each
 
 ```bash
-cd /home/{username_lab}/Documents/colab-sg2-ada-pytorch
+cd NewLapStyle/PaddleGAN/output_dir
 ```
 
-have in mind to change the {username_lab} like 
-
-
+## Set up WandB monitoring
+Create a WandB account https://wandb.ai/ 
+Follow the terminal instructions 
 ```bash
-cd /home/ariana.venegas/Documents/colab-sg2-ada-pytorch
+pip install wandb
+wandb login
 ```
+
+Now you are ready to run the model!!
 
 ## Usage
+Change the parameter validate/save_img in the configuration file to true to save the output image. To test the trained model, you can directly test the "lapstyle_rev_second", since it also contains the trained weight of previous stages:
+```bash
+python tools/main.py --config-file configs/lapstyle_rev_second.yaml --evaluate-only --load 'output_dir/LongerVarSecond iter_30000_checkpoint.pdparams'
+```
 
-Open the Jupyter Notebooks provided for each style. If you need to run without notebooks, after being in the directory ('colab-sg2-ada-pytorch/stylegan2-ada-pytorch').  This is the configuration of how we started our 3rd experiment: 
-```python
-python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' -- metrics=fid50k_full --outdir=./metrics_ml --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/pretrained/wikiart.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
+The image will be outputed in the following folder
+```bash
+cd NewLapStyle/PaddleGAN/output_dir
 ```
 
 ## Demo 
-After installation, you can run the following command that will use the third experiment: 
 
 ```bash
-python generate.py --outdir=/content/out/images/ --trunc=0.8 --size=256-256 --seeds=0 --network=$network_path
+python applications/tools/lapstyle.py --content_img_path '../dataset/photo_jpg_train/46e84039a1.jpg' --style_image_path '../dataset/monet_jpg/82991e742a.jpg'
 ```
 
-## Tracking with Tensorboard 
-Go to the following path: 
+You can replace the content and style image:
 ```bash
-cd /home/{username_lab}/Documents/colab-sg2-ada-pytorch
-```
-
-And run the following command to see the dashboard: 
-
-```bash
-tensorboard --logdir ./
+python applications/tools/lapstyle.py --content_img_path ${PATH_OF_CONTENT_IMG} --style_image_path ${PATH_OF_STYLE_IMG}
 ```
 
 ## License
-Copyright © 2021, NVIDIA Corporation. All rights reserved.
+Copyright (c) 2020 PaddlePaddle Authors. All Rights Reserved
 
-This work is made available under the Nvidia Source Code License.
-
-Attribution to Derrick Schultz. 
+PaddleGAN is released under the Apache 2.0 license.
