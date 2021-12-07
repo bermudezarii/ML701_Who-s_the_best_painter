@@ -1,5 +1,3 @@
-ML701_Who's_the_best_painter
-
 # Who is the best painter? 
 
 Project of the course ML701 at MBZUAI. Our main motivation was to train a model using AI to learn the style of Claude Monet. 
@@ -9,13 +7,52 @@ We used as base two repositories:
 - StyleGAN: [https://github.com/dvschultz/stylegan2-ada-pytorch](https://github.com/dvschultz/stylegan2-ada-pytorch)
 - LapStyle: [https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/en_US/tutorials/lap_style.md](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/en_US/tutorials/lap_style.md)
 
+Some of our results can be found at:
+[Tensorboard and Results](https://github.com/bermudezarii/ML701_Who-s_the_best_painter/tree/main/StyleGAN_ADA/StyleGAN_ADA_Tensorboard_Images)
+
+### With StyleGAN-ADA
+![With StyleGAN-ADA](https://github.com/bermudezarii/ML701_Who-s_the_best_painter/blob/main/images_readme/StyleGAN_ADA_Results%20(1).jpg?raw=true)
+
+### With LapStyle
+![With LapStyle](https://github.com/bermudezarii/ML701_Who-s_the_best_painter/blob/main/images_readme/LapStyle_Results.png?raw=true)
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements (find requirements.txt). If using computers from the labs, load the module of cuda-11.1, to avoid problems with StyleGAN. Erase cache from nvcc if needed. 
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements. If using computers from the labs, load the module of cuda-11.1, to avoid problems with StyleGAN. Erase cache from nvcc if needed. 
 
 ```bash
-pip install -r requirements.txt
+which nvcc
+module load cuda-11.1
+which nvcc
+
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+
+pip install psutil scipy
+
+pip install click opensimplex requests tqdm pyspng ninja imageio-ffmpeg==0.4.3
+
+pip install opensimplex
+
+pip install tensorboard
+
+pip install ninja opensimplex torch==1.7.1 torchvision==0.8.2
+```
+You can do the following step (below) and put the weights in results, or download the zip from: 
+
+[https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF ](https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF )
+
+and put it inside (pasting the zip and unzip there).
+
+
+```bash
+cd /home/{username_lab}/Documents/colab-sg2-ada-pytorch
+```
+
+have in mind to change the {username_lab} like 
+
+
+```bash
+cd /home/ariana.venegas/Documents/colab-sg2-ada-pytorch
 ```
 
 ## Usage
@@ -25,12 +62,34 @@ Open the Jupyter Notebooks provided for each style. If you need to run without n
 python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' -- metrics=fid50k_full --outdir=./metrics_ml --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/pretrained/wikiart.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
 ```
 
-put how to use tensorboard. 
+## Demo 
+After installation, you can run the following command that will use the third experiment: 
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+```bash
+python generate.py --outdir=/content/out/images/ --trunc=0.8 --size=256-256 --seeds=0 --network=$network_path
+```
 
-Please make sure to update tests as appropriate.
+
+
+## Tracking with Tensorboard 
+Go to the following path: 
+```bash
+cd /home/{username_lab}/Documents/colab-sg2-ada-pytorch
+```
+
+And run the following command to see the dashboard: 
+
+```bash
+tensorboard --logdir ./
+```
+
+
+
+
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Copyright © 2021, NVIDIA Corporation. All rights reserved.
+
+This work is made available under the Nvidia Source Code License.
+
+Attribution to Derrick Schultz. 
