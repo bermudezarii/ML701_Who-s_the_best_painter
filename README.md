@@ -86,7 +86,7 @@ python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' --metrics=fid50k_fu
 
 To generate images wait til 4th kimg (13 min): 
 ```python
-python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' --metrics=fid50k_full --outdir=./results --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch//results/ID03-network-snapshot-002496.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
+python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' --metrics=fid50k_full --outdir=./results --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/results/ID03-network-snapshot-002496.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
 ```
 
 Check results folder for the image. 
