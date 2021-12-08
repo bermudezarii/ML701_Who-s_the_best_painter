@@ -16,17 +16,26 @@ Some of our results can be found at:
 ### With LapStyle
 ![With LapStyle](https://github.com/bermudezarii/ML701_Who-s_the_best_painter/blob/main/images_readme/LapStyle_Results.png?raw=true)
 
-# Clone 
-Please clone it in documents: 
-```bash
-cd /home/{username_lab}/Documents/
-```
+ 
+
 
 # StyleGAN-Ada
 
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements. If using computers from the labs, load the module of cuda-11.1, to avoid problems with StyleGAN. Erase cache from nvcc if needed. 
+Please move the folder: 
+```bash
+colab-sg2-ada-pytorch 
+```
+to: 
+```bash
+cd /home/{username_lab}/Documents/
+```
+so you can check if it's working by seeing the different python files from original git: 
+```bash
+ls /home/{username_lab}/Documents/colab-sg2-ada-pytorch
+```
 
 ```bash
 which nvcc
@@ -47,7 +56,7 @@ pip install ninja opensimplex torch==1.7.1 torchvision==0.8.2
 ```
 You can do the following step (below) and put the weights in results, or download the zip from: 
 
-[https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF ](https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF )
+[OneDrive_StyleGAN_ADA](https://mbzuaiac-my.sharepoint.com/:u:/g/personal/ariana_venegas_mbzuai_ac_ae/EToiZYOXKtpGq93fga6OR7wBwbBuxH3WV7WX6f9aTT2dyQ?e=qqdjkF ) or if link not working [GoogleDrive_StyleGAN_ADA](https://drive.google.com/file/d/1Uq5dcpccr11-gQ8J6I1yu8mBsKDUrZB5/view?usp=sharing) 
 
 and put it inside (pasting the zip and unzip there).
 
