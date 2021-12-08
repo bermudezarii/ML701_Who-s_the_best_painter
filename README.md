@@ -81,14 +81,14 @@ cd /home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/
 ```
 
 ```python
-python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' -- metrics=fid50k_full --outdir=./results --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/pretrained/wikiart.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
+python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' --metrics=fid50k_full --outdir=./results --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/pretrained/wikiart.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
 ```
 
 ## Demo 
 After installation, you can run the following command that will use the third experiment: 
 
 ```bash
-python generate.py --outdir=/content/out/images/ --trunc=0.8 --size=256-256 --seeds=0 --network=$network_path
+python generate.py --outdir=/content/out/images/ --trunc=0.8 --size=256-256 --seeds=0 --network=/results/ID03-network-snapshot-002496.pkl
 ```
 
 ## Tracking with Tensorboard 
