@@ -75,6 +75,11 @@ cd /home/ariana.venegas/Documents/colab-sg2-ada-pytorch
 ## Usage
 
 Open the Jupyter Notebooks provided for each style. If you need to run without notebooks, after being in the directory ('colab-sg2-ada-pytorch/stylegan2-ada-pytorch').  This is the configuration of how we started our 3rd experiment: 
+
+```bash
+cd /home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/ 
+```
+
 ```python
 python train.py --nkimg=0 --snap=1 --gpus=1 --cfg='24gb-gpu' -- metrics=fid50k_full --outdir=./metrics_ml --data='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/datasets/Monet_folder.zip' --resume='/home/ariana.venegas/Documents/colab-sg2-ada-pytorch/stylegan2-ada-pytorch/pretrained/wikiart.pkl' --augpipe='bg' --initstrength=0 --gamma=50 --mirror=True --mirrory=False --nkimg=0
 ```
