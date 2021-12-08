@@ -94,7 +94,7 @@ python generate.py --outdir=/content/out/images/ --trunc=0.8 --size=256-256 --se
 ## Tracking with Tensorboard 
 Go to the following path: 
 ```bash
-cd /home/{username_lab}/Documents/colab-sg2-ada-pytorch
+cd /home/{where you clone the git}/
 ```
 
 And run the following command to see the dashboard: 
