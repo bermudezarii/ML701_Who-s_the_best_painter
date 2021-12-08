@@ -16,6 +16,11 @@ Some of our results can be found at:
 ### With LapStyle
 ![With LapStyle](https://github.com/bermudezarii/ML701_Who-s_the_best_painter/blob/main/images_readme/LapStyle_Results.png?raw=true)
 
+# Clone 
+Please clone it in documents: 
+```bash
+cd /home/{username_lab}/Documents/
+```
 
 # StyleGAN-Ada
 
